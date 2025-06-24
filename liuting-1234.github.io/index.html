@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马家窑彩陶文化——远古文明的流动诗篇</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background-color: #8B4513;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        .digital-human {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .chat-container {
+            flex: 2;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* 数字人形象位置 - 请在此处插入哪吒图片 */
+        .human-image {
+            width: 300px;
+            height: 400px;
+            margin: 0 auto 20px;
+            background-color: #eee;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .human-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .chat-box {
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background-color: #e3f2fd;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background-color: #f1f1f1;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #A0522D;
+        }
+        
+        .voice-btn {
+            background-color: #4CAF50;
+        }
+        
+        .voice-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .info-section {
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #8B4513;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 10px;
+        }
+        
+        .pottery-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .pottery-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .pottery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .pottery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .pottery-item p {
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .human-image {
+                width: 200px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>马家窑彩陶文化——远古文明的流动诗篇</h1>
+        <p>探索新石器时代晚期的彩陶艺术与文明</p>
+    </div>
+    
+    <div class="container">
+        <div class="digital-human">
+            <h2>彩陶文化小向导</h2>
+            <!-- 数字人形象位置 - 请在此处插入哪吒图片 -->
+            <div class="human-image">
+                 <img src="images/哪吒形象.jpg" alt="哪吒数字人形象">
+            </div>
+            <p>你好！我是彩陶文化小向导，可以问我关于马家窑彩陶的任何问题哦！</p>
+            <button id="voice-btn" class="voice-btn">语音对话</button>
+        </div>
+        
+        <div class="chat-container">
+            <h2>彩陶文化问答</h2>
+            <div class="chat-box" id="chat-box">
+                <div class="message bot-message">
+                    你好！我是彩陶文化小向导，专门为你解答关于马家窑彩陶文化的问题。马家窑文化是新石器时代晚期的重要文化，以精美的彩陶闻名。你想了解彩陶的纹饰、形制还是历史背景呢？
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="输入关于马家窑彩陶的问题...">
+                <button id="send-btn">发送</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <h2>马家窑彩陶文化简介</h2>
+        <p>马家窑文化是黄河上游地区新石器时代晚期的文化，距今约5300-4000年，因首次发现于甘肃省临洮县马家窑村而得名。它以精美的彩陶著称，是中国史前彩陶艺术的巅峰。</p>
+        
+        <h3>主要特征：</h3>
+        <ul>
+            <li><strong>纹饰精美：</strong>以漩涡纹、波浪纹、网格纹等几何图案为主，线条流畅，构图严谨</li>
+            <li><strong>色彩鲜明：</strong>多使用黑彩，也有红彩，在橙黄色陶衣上形成鲜明对比</li>
+            <li><strong>器型多样：</strong>包括盆、钵、罐、壶等多种器型，实用与美观并重</li>
+            <li><strong>工艺精湛：</strong>陶土细腻，制作规整，烧制温度高，胎质坚硬</li>
+        </ul>
+        
+        <h3>彩陶纹饰演变</h3>
+        <p>马家窑文化彩陶纹饰经历了从简单到复杂再到简化的过程：早期以简单的带状纹为主；中期纹饰繁复精美，出现大量漩涡纹；晚期纹饰又趋于简化。</p>
+    </div>
+    
+    <div class="info-section">
+        <h2>马家窑彩陶精品欣赏</h2>
+        <div class="pottery-gallery">
+            <div class="pottery-item">
+                <img src="[请插入马家窑彩陶图片1]" alt="漩涡纹彩陶盆">
+                <p>漩涡纹彩陶盆</p>
+            </div>
+            <div class="pottery-item">
+                <img src="[请插入马家窑彩陶图片2]" alt="网格纹彩陶罐">
+                <p>网格纹彩陶罐</p>
+            </div>
+            <div class="pottery-item">
+                <img src="[请插入马家窑彩陶图片3]" alt="蛙纹彩陶钵">
+                <p>蛙纹彩陶钵</p>
+            </div>
+            <div class="pottery-item">
+                <img src="[请插入马家窑彩陶图片4]" alt="舞蹈纹彩陶盆">
+                <p>舞蹈纹彩陶盆</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 语音识别和合成功能
+        const voiceBtn = document.getElementById('voice-btn');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatBox = document.getElementById('chat-box');
+        
+        // 检查浏览器是否支持语音识别
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+        
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'zh-CN';
+            
+            voiceBtn.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                    voiceBtn.textContent = '正在聆听...';
+                    voiceBtn.style.backgroundColor = '#f44336';
+                    
+                    recognition.onresult = (event) => {
+                        const transcript = event.results[0][0].transcript;
+                        userInput.value = transcript;
+                        sendMessage();
+                    };
+                    
+                    recognition.onerror = (event) => {
+                        console.error('语音识别错误:', event.error);
+                        voiceBtn.textContent = '语音对话';
+                        voiceBtn.style.backgroundColor = '#4CAF50';
+                        addBotMessage('抱歉，我没有听清楚，请再说一遍或直接输入您的问题。');
+                    };
+                    
+                    recognition.onend = () => {
+                        voiceBtn.textContent = '语音对话';
+                        voiceBtn.style.backgroundColor = '#4CAF50';
+                    };
+                } catch (error) {
+                    console.error('语音识别错误:', error);
+                    addBotMessage('您的浏览器不支持语音功能或麦克风未授权，请尝试输入文字。');
+                }
+            });
+        } else {
+            voiceBtn.disabled = true;
+            voiceBtn.title = '您的浏览器不支持语音识别';
+        }
+        
+        // 发送消息函数
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+            
+            addUserMessage(message);
+            userInput.value = '';
+            
+            // 模拟思考中
+            const thinkingMsg = addBotMessage('思考中...');
+            
+            // 根据问题类型生成回答
+            setTimeout(() => {
+                const response = generateResponse(message);
+                thinkingMsg.textContent = response;
+                
+                // 语音播报回答
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(response);
+                    utterance.lang = 'zh-CN';
+                    speechSynthesis.speak(utterance);
+                }
+            }, 1000);
+        }
+        
+        // 添加用户消息
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = text;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return messageDiv;
+        }
+        
+        // 添加机器人消息
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = text;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return messageDiv;
+        }
+        
+        // 生成回答
+        function generateResponse(question) {
+            // 转换为小写便于匹配
+            const q = question.toLowerCase();
+            
+            // 关于马家窑彩陶纹饰的问题
+            if (q.includes('纹饰') || q.includes('图案') || q.includes('花纹')) {
+                return `马家窑彩陶的纹饰极为丰富，主要包括以下几种类型：
+1. 漩涡纹：这是马家窑彩陶最具代表性的纹饰，由多个漩涡相连组成，线条流畅优美，可能象征着水流的漩涡或宇宙的旋转。
+2. 波浪纹：由连续的波浪线组成，可能与黄河水域文化有关。
+3. 网格纹：由交叉的直线构成网格状图案，规整有序。
+4. 蛙纹：抽象化的蛙形图案，反映了原始生殖崇拜。
+5. 舞蹈纹：如著名的舞蹈纹彩陶盆，描绘了手拉手跳舞的人物形象。
+
+这些纹饰不仅美观，还反映了当时人们的自然观和宇宙观，具有重要的文化内涵。`;
+            
+            // 关于彩陶器型的问题
+            } else if (q.includes('器型') || q.includes('形制') || q.includes('形状')) {
+                return `马家窑彩陶的器型多样，主要包括：
+1. 盆：大口、浅腹，多用于盛放食物，如著名的舞蹈纹彩陶盆。
+2. 钵：半球形或深腹，有敛口和敞口之分，用于饮食。
+3. 罐：小口、鼓腹，用于储存粮食或水。
+4. 壶：有颈、有流，用于盛装和倾倒液体。
+5. 瓶：细长颈，可能用于特殊用途或礼仪。
+
+这些器型设计既考虑实用性，又注重美学效果，体现了史前工匠的高超技艺。`;
+            
+            // 关于历史分期的问题
+            } else if (q.includes('时期') || q.includes('年代') || q.includes('分期')) {
+                return `马家窑文化可分为三个主要时期：
+1. 马家窑期（约公元前3300-2900年）：
+   - 彩陶数量多，纹饰以漩涡纹为主
+   - 器型规整，制作精良
+   - 黑彩为主，橙黄色陶衣
+
+2. 半山期（约公元前2900-2500年）：
+   - 纹饰更加繁复，出现红黑彩并用
+   - 典型纹饰有锯齿纹、葫芦纹等
+   - 器型更加丰富
+
+3. 马厂期（约公元前2500-2000年）：
+   - 纹饰趋于简化
+   - 出现四大圆圈纹、回形纹等
+   - 陶器制作略显粗糙
+
+这三个时期反映了马家窑文化从发展到鼎盛再到衰落的过程。`;
+            
+            // 关于制作工艺的问题
+            } else if (q.includes('制作') || q.includes('工艺') || q.includes('烧制')) {
+                return `马家窑彩陶的制作工艺十分精湛，主要步骤包括：
+1. 选料：选用细腻的黏土，经过淘洗去除杂质。
+2. 成型：主要使用泥条盘筑法，部分小件器物可能使用捏塑法。
+3. 修整：用工具修整器表，使其光滑规整。
+4. 绘制：在陶坯半干时，用矿物颜料（如赤铁矿、锰矿）绘制纹饰。
+5. 烧制：在窑中高温烧制（约900-1050℃），使陶器硬化并固定颜色。
+
+特别值得一提的是，马家窑文化的陶工已经掌握了氧化焰烧制技术，使陶器呈现橙红色，而彩绘部分则因矿物成分不同呈现黑色或红色。`;
+            
+            // 关于文化意义的问题
+            } else if (q.includes('意义') || q.includes('价值') || q.includes('重要性')) {
+                return `马家窑彩陶具有重要的历史和文化价值：
+1. 艺术价值：代表了中国史前彩陶艺术的最高水平，纹饰精美，构图严谨。
+2. 历史价值：反映了新石器时代晚期的社会生活、宗教信仰和审美观念。
+3. 技术价值：展示了当时先进的制陶工艺和烧制技术。
+4. 文化价值：是黄河上游地区史前文化的重要代表，对研究中华文明起源有重要意义。
+
+著名考古学家苏秉琦曾评价马家窑彩陶是"远古文明的流动诗篇"，生动展现了史前人类的艺术创造力。`;
+            
+            // 默认回答
+            } else {
+                return `关于马家窑彩陶文化，我可以为您介绍以下几个方面：
+1. 纹饰特点：漩涡纹、波浪纹等精美图案
+2. 器型分类：盆、钵、罐、壶等不同形制
+3. 历史分期：马家窑期、半山期、马厂期
+4. 制作工艺：选料、成型、绘制、烧制等技术
+5. 文化意义：艺术价值与历史地位
+
+您可以具体问我某个方面的问题，我会为您详细解答！`;
+            }
+        }
+        
+        // 事件监听
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
